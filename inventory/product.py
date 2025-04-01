@@ -1,4 +1,9 @@
+
+
+
+
 class Product:
+
     def __init__(self, name, price, quantity):
         self.name = name
         self.price = price
@@ -40,6 +45,7 @@ class InventoryManager:
 
     def get_total_inventory_value(self):
         return sum(product.get_value() for product in self.inventory.values())
+    
 
 inventory = InventoryManager()
 inventory.add_product("Laptop", 1000, 5)
