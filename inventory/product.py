@@ -16,7 +16,7 @@ class InventoryManager:
 
     def add_product(self, name, price, quantity):
         if name in self.inventory:
-            self.inventory[name].quantity += quantity  # Update quantity if product exists
+            self.inventory[name].quantity += quantity 
         else:
             self.inventory[name] = Product(name, price, quantity)
 
@@ -41,9 +41,8 @@ class InventoryManager:
     def get_total_inventory_value(self):
         return sum(product.get_value() for product in self.inventory.values())
 
-# Example Usage:
 inventory = InventoryManager()
 inventory.add_product("Laptop", 1000, 5)
 inventory.add_product("Mouse", 50, 10)
 print(inventory.get_product_info("Laptop"))  # Product: Laptop, Price: 1000, Quantity: 5
-print("Total Inventory Value:", inventory.get_total_inventory_value())  # 5500
+print("Total Inventory Value:", inventory.get_total_inventory_value()) 
