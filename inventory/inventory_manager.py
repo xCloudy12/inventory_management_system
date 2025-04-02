@@ -35,11 +35,7 @@ class InventoryManager:
 
         return sum(product.get_total_value() for product in self.inventory.values())
     
-    def get_products_by_category(self, category: str) -> List[Product]:
 
-        return [product for product in self.inventory.values() 
-                if product.category and product.category.lower() == category.lower()]
-    
     def get_low_stock_products(self, threshold: int = 5) -> List[Product]:
 
         return [product for product in self.inventory.values() 
