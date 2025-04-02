@@ -1,7 +1,7 @@
 from inventory.inventory_manager import InventoryManager
 from inventory.product import Product
 
-def display_menu():
+def display_menu(): #Menu function
     """Display the main menu options."""
     print("\n=== INVENTORY MANAGEMENT SYSTEM ===")
     print("1. Add Product")
@@ -14,9 +14,9 @@ def display_menu():
     print("8. Exit")
 
 def add_product(inventory):
-    """Handle adding a new product."""
+    """ Add new product."""
     print("\n--- ADD NEW PRODUCT ---")
-    name = input("Product Name: ").strip()
+    name = input("Product Name: ").strip() #.strip -> remove whitespaces
     
     # Check if product already exists
     if inventory.get_product_info(name) != f"Product '{name}' not found":
@@ -28,11 +28,11 @@ def add_product(inventory):
         quantity = int(input("Quantity: "))
         inventory.add_product(Product(name, price, quantity))
         print(f" '{name}' added successfully!")
-    except ValueError as e:
+    except ValueError as e: # Error Handling
         print(f" Error: {e}")
 
 def search_product(inventory):
-    """Handle product search."""
+    """ product search."""
     print("\n--- SEARCH PRODUCT ---")
     name = input("Enter product name: ").strip()
     print(inventory.get_product_info(name))
@@ -119,7 +119,9 @@ def main():
         elif choice == "6":
             check_low_stock(inventory)
         elif choice == "7":
-            print(f"\nTotal Inventory Value: Є{inventory.get_total_inventory_value():.2f}")
+            #Calls the method to calculate the sum of (price × quantity) for all products and returns a float
+            #2f formats 2 decimal spaces and f -> fixed point rounding up the value
+            print(f"\nTotal Inventory Value: {inventory.get_total_inventory_value():.2f} Є")
         elif choice == "8":
             print("Arrivederci")
             break
