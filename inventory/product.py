@@ -24,7 +24,7 @@ class Product:
     def get_product_info(self) -> str:
 
         return (f"Product: {self.name}, Price: {self.price:.2f} Є, "
-                f"Quantity: {self.quantity}{category_info}")
+                f"Quantity: {self.quantity}")
     
     def get_total_value(self) -> float:
 

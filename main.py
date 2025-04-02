@@ -26,14 +26,6 @@ def main():
     
     print(inventory.get_product_info("Product not exist"))
     
-    # Update a product's quantity
-    try:
-        inventory.update_product_quantity("Mouse", 80)
-        print("\nAfter updating Pen quantity:")
-        print(inventory.get_product_info("Pen"))
-    except KeyError as e:
-        print(f"Error updating product: {e}")
-    
     
     # Get low stock products
     print("\nLow Stock (quantity < 20):")
