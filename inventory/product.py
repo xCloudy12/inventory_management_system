@@ -1,49 +1,30 @@
 class Product:
-    def __init__(self, name, price, quantity):
+    
+    def __init__(self, name: str, price: float, quantity: int):
+
         self.name = name
         self.price = price
         self.quantity = quantity
+        
+    def update_quantity(self, new_quantity: int) -> None:
 
-    def get_info(self):
-        return f"Product: {self.name}, Price: {self.price}, Quantity: {self.quantity}"
+        if new_quantity >= 0:
+            self.quantity = new_quantity
+        else:
+            raise ValueError("Quantity must be positive")
+    
+    def update_price(self, new_price: float) -> None:
 
-    def get_value(self):
+        if new_price >= 0:
+            self.price = new_price
+        else:
+            raise ValueError("Price must be positive")
+    
+    def get_product_info(self) -> str:
+
+        return (f"Product: {self.name}, Price: {self.price:.2f} Є, "
+                f"Quantity: {self.quantity}")
+    
+    def get_total_value(self) -> float:
+
         return self.price * self.quantity
-
-class InventoryManager:
-    def __init__(self):
-        self.inventory = {}
-
-    def add_product(self, name, price, quantity):
-        if name in self.inventory:
-            self.inventory[name].quantity += quantity  # Update quantity if product exists
-        else:
-            self.inventory[name] = Product(name, price, quantity)
-
-    def remove_product(self, name):
-        if name in self.inventory:
-            del self.inventory[name]
-        else:
-            print("Product not found in inventory.")
-
-    def update_quantity(self, name, quantity):
-        if name in self.inventory:
-            self.inventory[name].quantity = quantity
-        else:
-            print("Product not found in inventory.")
-
-    def get_product_info(self, name):
-        if name in self.inventory:
-            return self.inventory[name].get_info()
-        else:
-            return "Product not found"
-
-    def get_total_inventory_value(self):
-        return sum(product.get_value() for product in self.inventory.values())
-
-# Example Usage:
-inventory = InventoryManager()
-inventory.add_product("Laptop", 1000, 5)
-inventory.add_product("Mouse", 50, 10)
-print(inventory.get_product_info("Laptop"))  # Product: Laptop, Price: 1000, Quantity: 5
-print("Total Inventory Value:", inventory.get_total_inventory_value())  # 5500
