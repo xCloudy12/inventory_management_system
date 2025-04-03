@@ -5,7 +5,6 @@ class Product:
         self.name = name
         self.price = price
         self.quantity = quantity
-
         
     def update_quantity(self, new_quantity: int) -> None:
 
