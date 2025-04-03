@@ -20,16 +20,16 @@ def add_product(inventory):
     
     # Check if product already exists
     if inventory.get_product_info(name) != f"Product '{name}' not found":
-        print(f" Product '{name}' already exists!")
+        print(f"Product '{name}' already exists!")
         return
     
     try:
         price = float(input("Price (€): "))
         quantity = int(input("Quantity: "))
         inventory.add_product(Product(name, price, quantity))
-        print(f" '{name}' added successfully!")
-    except ValueError as e: # Error Handling
-        print(f" Error: {e}")
+        print(f"'{name}' added successfully!")
+    except ValueError: # Error Handling
+        print(f"Invalid input, please try again!")
 
 def search_product(inventory):
     """ product search."""
@@ -43,7 +43,7 @@ def update_product(inventory):
     name = input("Product name to update: ").strip()
     
     if inventory.get_product_info(name) == f"Product '{name}' not found":
-        print(f" Product '{name}' not found!")
+        print(f"Product '{name}' not found!")
         return
     
     print("\nWhat do you want to update?")
@@ -60,11 +60,11 @@ def update_product(inventory):
             inventory.update_product_quantity(name, new_qty)
 
         else:
-            print(" Invalid choice")
+            print("Invalid choice")
             return
-        print(f" '{name}' updated successfully!")
-    except ValueError as e:
-        print(f" Error: {e}")
+        print(f"'{name}' updated successfully!")
+    except ValueError:
+        print(f"Invalid input, please try again!")
 
 def delete_product(inventory):
     """Product delete."""
@@ -72,9 +72,9 @@ def delete_product(inventory):
     name = input("Enter product name to delete: ").strip()
     try:
         inventory.remove_product(name)
-        print(f" '{name}' deleted successfully!")
+        print(f"'{name}' deleted successfully!")
     except KeyError:
-        print(f" Product '{name}' not found!")
+        print(f"Product '{name}' not found!")
 
 def list_products(inventory):
     """List all products."""
@@ -91,7 +91,7 @@ def check_low_stock(inventory):
     print("\n--- LOW STOCK  ---")
     threshold = int(input("Enter threshold quantity (default 5): ") or 5)
     low_stock = inventory.get_low_stock_products(threshold)
-    
+
     if not low_stock:
         print(f"No products below {threshold} units")
     else:
@@ -123,7 +123,7 @@ def main():
             #2f formats 2 decimal spaces and f -> fixed point rounding up the value
             print(f"\nTotal Inventory Value: {inventory.get_total_inventory_value():.2f} Є")
         elif choice == "8":
-            print("Arrivederci")
+            print("\nArrivederci")
             break
         else:
             print(" Invalid choice. Please enter 1-8")
